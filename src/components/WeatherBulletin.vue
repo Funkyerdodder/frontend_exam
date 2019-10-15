@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>Weather Bulletin</h3>
+      <h3>Weather Bulletizzzn</h3>
   </div>
 </template>
 
