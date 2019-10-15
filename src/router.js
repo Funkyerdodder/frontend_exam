@@ -1,6 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import CurrencyConverter from './components/CurrencyConverter';
+import WeatherBulletin from './components/WeatherBulletin';
+import BattleOfNumbers from './components/BattleOfNumbers';
 
 Vue.use(Router)
 
@@ -8,8 +10,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      component: CurrencyConverter
     },
     {
       path: '/about',
@@ -18,6 +19,14 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/weather-bulletin',
+      component: WeatherBulletin
+    },
+    {
+      path: '/battle-of-numbers',
+      component: BattleOfNumbers
     }
   ]
 })
