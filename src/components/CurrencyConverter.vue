@@ -1,11 +1,12 @@
 <template>
   <v-container>
-    <h2>Currency Converter</h2>
+    <h2 class="text-center">Currency Converter</h2>
     <v-form ref="currencyForm">
       <v-row>
         <v-col cols="2">
           <v-text-field
             type="number"
+            outlined
             v-model="amount"
             label="Amount"
             :rules="amountRules"
@@ -14,6 +15,7 @@
         <v-col cols="5">
           <v-select
             v-model="currentCurrency"
+            outlined
             label="Current Currency"
             :items="currencyItems"
             :rules="currentRules"
@@ -22,6 +24,7 @@
         <v-col cols="5">
           <v-select
             v-model="convertCurrency"
+            outlined
             label="Convert to"
             :items="currencyItems"
             multiple
@@ -30,14 +33,13 @@
         </v-col>
       </v-row>
       <v-row align="center" justify="center">
-        <v-btn depressed color="primary" @click="convert">Convert</v-btn>
+        <v-btn tile color="#b5a5a5" @click="convert">Convert</v-btn>
       </v-row>
     </v-form>
     <v-row>
       <v-col cols="6" v-for="(item, index) in dataItem" :key="index">
         <v-card>
-          <v-card-text>
-            <!-- {{ item.amount }}, {{ item.curr }} -->
+          <v-card-text class="text-center title">
             {{ item.amount + " " + item.from }} = {{ item.computedAmount + " " + item.curr }}
           </v-card-text>
         </v-card>
@@ -66,7 +68,7 @@ export default {
     ],
     convertRules: [
       v => v.length > 0 || 'This field is required',
-      v => v.length < 5 || 'Maximum of 5 selected items only'
+      v => v.length <= 5 || 'Maximum of 5 selected items only'
     ]
   }),
 
@@ -104,7 +106,7 @@ export default {
           axios(config)
             .then(res => {
               // let computedAmount = this.amount * res.data;
-              this.dataItem.push({ computedAmount: (this.amount * res.data).toFixed(2), curr: item, from: this.currentCurrency, amount: this.amount});
+              this.dataItem.push({ computedAmount: this.amount * res.data, curr: item, from: this.currentCurrency, amount: this.amount});
               
             })
             .catch(err => console.log(err));
