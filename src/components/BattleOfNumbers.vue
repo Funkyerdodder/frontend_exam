@@ -120,13 +120,14 @@ export default {
             if (int != number.length - 1) {
               number.splice(-1, 1) //delete the loser number
             }
+            this.total_rounds = roundCount; 
             int++; //counters
             roundCount++; //counters
           }
           data.push({bracket: `Bracket #${bracketCount}`, lists: list});
           this.winner = number[0];
           this.total_bracket = bracketCount;
-          this.total_rounds = roundCount; 
+
           bracketCount++; //counters
         }
         this.nums = [];
